@@ -1,0 +1,109 @@
+@import 'tailwindcss';
+
+@font-face {
+  font-family: 'Figtree';
+  src: url('../fonts/Figtree/Figtree-VariableFont_wght.ttf');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Figtree';
+  src: url('../fonts/Figtree/Figtree-Italic-VariableFont_wght.ttf');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Figtree';
+  src: url('../fonts/Figtree/Figtree-Italic-VariableFont_wght.ttf') format('truetype-variations');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Kantumruy Pro';
+  src: url('../fonts/Kantumruy_Pro/KantumruyPro-VariableFont_wght.ttf') format('truetype-variations');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Kantumruy Pro';
+  src: url('../fonts/Kantumruy_Pro/KantumruyPro-Italic-VariableFont_wght.ttf') format('truetype-variations');
+  font-weight: 100 900;
+  font-style: italic;
+  font-display: swap;
+}
+
+@layer base {
+  html {
+    font-family: 'Figtree', 'Kantumruy Pro', system-ui, sans-serif;
+  }
+
+  body {
+    @apply bg-gray-50 text-gray-900;
+  }
+}
+
+.prose h2 {
+  @apply text-2xl font-bold text-black mt-8 mb-4;
+}
+
+.prose h3 {
+  @apply text-xl font-bold text-black mt-6 mb-3;
+}
+
+.prose p {
+  @apply text-gray-700 mb-4;
+}
+
+.prose ul {
+  @apply list-disc pl-6 mb-4 text-gray-700;
+}
+
+.prose ol {
+  @apply list-decimal pl-6 mb-4 text-gray-700;
+}
+
+.prose blockquote {
+  @apply border-l-4 border-green-700 pl-4 italic text-gray-600 my-6;
+}
+
+.prose pre {
+  @apply text-gray-200 p-4 rounded-b-lg overflow-x-auto mb-6;
+}
+
+.prose code {
+  @apply font-mono text-xs;
+}
+
+.prose a {
+  @apply text-green-700;
+}
+
+/* Custom styles for code blocks */
+:deep(.code-block-container) {
+  @apply mb-6 rounded-lg overflow-hidden border border-gray-200;
+}
+
+:deep(.code-block-container pre) {
+  @apply m-0;
+}
+
+:deep(.code-block-container code) {
+  @apply block;
+}
+
+/* Override prose styles for code blocks */
+:deep(.prose pre) {
+  @apply p-0 bg-transparent;
+}
+
+:deep(.prose code) {
+  @apply bg-transparent text-inherit p-0;
+}
