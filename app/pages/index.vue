@@ -4,17 +4,23 @@ import { onMounted, ref } from 'vue';
 // import Spinner from '@/components/Spinner.vue';
 // import usePost from '@/composables/post';
 
-const email = ref('');
-const loading = ref(true);
-// const { posts, getPosts } = usePost();
+// SEO
+useSeoMeta({
+  title: 'Darong Blog - Laravel Tutorials and Tips',
+  ogTitle: 'Darong Blog - Laravel Tutorials and Tips',
+  description: 'Tutorials, tips, and best practices for building modern web applications with Laravel.',
+  ogDescription: 'Tutorials, tips, and best practices for building modern web applications with Laravel.',
+  // ogImage: newPost ? newPost.imageUrl : 'https://example.com/image.png',
+  twitterCard: 'summary_large_image',
+});
 
-// onMounted(async () => {
-//   try {
-//     // await getPosts('', 1);
-//   } finally {
-//     loading.value = false;
-//   }
-// });
+const { data, pending, error } = await useFetch('/api/posts?isFeatured=1&withAuthor=true', {
+    lazy: true
+});
+
+const posts = computed(() => data.value?.data || []);
+
+const email = ref('');
 
 const subscribeNewsletter = () => {
   alert(`Thank you for subscribing with ${email.value}!`);
@@ -45,6 +51,41 @@ const subscribeNewsletter = () => {
 
             </div>
         </div>
+    </section>
+
+    <!-- Featured Posts -->
+    <section class="py-12">
+      <div class="container mx-auto px-4">
+        <h2 class="text-2xl font-bold text-black mb-8 border-l-5 border-green-700 px-3">Featured Articles</h2>
+
+        <!-- Loading Spinner -->
+        <div v-if="pending" class="py-16">
+          <Spinner/>
+          <p class="text-center text-gray-500 mt-4">Loading featured articles...</p>
+        </div>
+
+        <!-- Content -->
+        <template v-else>
+          <div v-if="posts.length === 0" class="text-center py-12">
+            <p class="text-gray-500">No featured articles found."</p>
+          </div>
+          <div v-else class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <NuxtLink
+              v-for="blog in posts"
+              :key="blog.id"
+              :to="`/blogs/${blog.slug}`"
+              class="block"
+            >
+              <BlogCard :blog="blog" />
+            </NuxtLink>
+          </div>
+        </template>
+        <div class="text-center mt-12">
+          <NuxtLink to="/blogs" class="inline-block text-green-700 hover:text-green-700 font-medium">
+            View All Articles →
+          </NuxtLink>
+        </div>
+      </div>
     </section>
 
     <!-- Newsletter -->

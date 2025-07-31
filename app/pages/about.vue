@@ -89,6 +89,16 @@
 <script setup>
 import { reactive } from 'vue';
 
+// SEO
+useSeoMeta({
+  title: 'Darong Blog - About',
+  ogTitle: 'Darong Blog - About',
+  description: 'Tutorials, tips, and best practices for building modern web applications with Laravel.',
+  ogDescription: 'Tutorials, tips, and best practices for building modern web applications with Laravel.',
+  // ogImage: newPost ? newPost.imageUrl : 'https://example.com/image.png',
+  twitterCard: 'summary_large_image',
+});
+
 const form = reactive({
   name: '',
   email: '',
