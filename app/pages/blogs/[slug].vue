@@ -78,10 +78,9 @@ import 'highlight.js/styles/atom-one-dark.css'; // or any other theme you prefer
 
 const route = useRoute();
 
-const { data: post, pending } = useFetch(`/api/posts/${route.params.slug}`, {
-//   transform: (data) => data.data || {},
-//   immediate: false
-});
+const { data: post, pending } = await useAsyncData('post', () =>
+  $fetch(`/api/posts/${route.params.slug}`)
+);
 
 const { data: posts } = useFetch(() => {
     // Dynamic endpoint with params
