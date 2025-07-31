@@ -130,8 +130,8 @@ watch(
     useSeoMeta({
       title: newPost ? newPost.title : 'Loading...',
       ogTitle: newPost ? newPost.title : 'Loading...',
-      description: newPost ? newPost.summary || newPost.title : 'This is my amazing site, let me tell you all about it.',
-      ogDescription: newPost ? newPost.summary || newPost.title : 'This is my amazing site, let me tell you all about it.',
+      description: newPost ? newPost.excerpt || newPost.title : 'This is my amazing site, let me tell you all about it.',
+      ogDescription: newPost ? newPost.excerpt || newPost.title : 'This is my amazing site, let me tell you all about it.',
       ogImage: newPost ? newPost.imageUrl : 'https://example.com/image.png',
       twitterCard: 'summary_large_image',
     });
